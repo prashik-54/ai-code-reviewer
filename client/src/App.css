@@ -1,0 +1,297 @@
+/* Theme variables and layout tokens
+   - Use CSS custom properties for colors to support dark/light themes.
+   - Comments below document each section for maintainability.
+*/
+
+/* --- Design tokens (colors & accents) --- */
+:root {
+    /* Dark theme defaults */
+    --bg-color: #0D0B1A;
+    --panel-bg-color: #1A182E;
+    --border-color: #332F54;
+    --text-primary: #E0E0E0;
+    --text-secondary: #A09ECB;
+    --accent-purple: #8E2DE2;
+    --accent-blue: #6E45FF;
+}
+
+/* Light theme overrides (applied via data-theme="light" on body) */
+[data-theme='light'] {
+    --bg-color: #F8F7F4;
+    --panel-bg-color: #FFFFFF;
+    --border-color: #EAE8E1;
+    --text-primary: #1A202C;
+    --text-secondary: #718096;
+}
+
+/* --- Global layout --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+    padding: 20px;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+}
+
+/* App root: vertical layout with header, main content and footer */
+.App {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 40px);
+}
+
+/* --- Header (compact) --- */
+.App-header {
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.App-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.App-header p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Theme toggle button (top-right in header) */
+.theme-toggle-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--panel-bg-color);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* --- Main content: two panels side-by-side --- */
+.main-content {
+    display: flex;
+    gap: 20px;
+    flex-grow: 1;
+    min-height: 0;
+}
+
+/* Panel base style used by both left and right panels */
+.panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+    min-width: 0;
+}
+
+[data-theme='light'] .panel {
+    box-shadow: 0 4px 14px 0 rgba(111, 120, 130, 0.12);
+}
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--text-secondary);
+    margin: 0 0 15px 0;
+}
+
+/* Code editor container: grows to fill available space */
+.code-editor-container {
+    width: 100%;
+    flex-grow: 1;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    display: flex;
+    min-height: 250px; /* --- THIS IS THE FIX --- Ensures the editor has a usable height */
+}
+
+/* --- Buttons layout (responsive grid) --- */
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.analyze-button {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.analyze-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.analyze-button:hover:not(:disabled) {
+    opacity: 0.9;
+}
+
+.secondary-button,
+.tertiary-button,
+.quaternary-button {
+    background: var(--panel-bg-color);
+}
+.secondary-button:hover:not(:disabled),
+.tertiary-button:hover:not(:disabled),
+.quaternary-button:hover:not(:disabled) {
+    background-color: var(--bg-color);
+}
+.secondary-button { border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+.tertiary-button { border: 1px solid #20c997; color: #20c997; }
+.quaternary-button { border: 1px solid #fd7e14; color: #fd7e14; }
+.quinary-button { background: linear-gradient(90deg, #16a085, #f4d03f); color: white; }
+
+/* --- Placeholder content --- */
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    color: var(--text-secondary);
+    gap: 15px;
+}
+.placeholder-content.error-message { color: #e57373; }
+.placeholder-content svg { font-size: 3rem; }
+
+/* --- Right panel scrollable content --- */
+.right-panel-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.review-output {
+    line-height: 1.7;
+    padding-right: 5px;
+}
+.review-output pre {
+    background-color: var(--bg-color);
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.copy-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background-color: var(--panel-bg-color);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.copy-button:hover { background-color: var(--bg-color); color: var(--text-primary); }
+
+/* --- Language selector controls --- */
+.language-selectors {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.language-selectors div { flex: 1; display: flex; flex-direction: column; }
+.language-selectors label { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 5px; text-align: left; }
+.language-selectors select { padding: 8px; background-color: var(--bg-color); color: var(--text-primary); border: 1px solid var(--border-color); border-radius: 6px; font-size: 1rem; }
+
+/* --- Footer --- */
+.App-footer {
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 15px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+.App-footer p { margin: 0; }
+.App-footer a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 8px;
+    transition: color 0.3s ease;
+}
+.App-footer a:hover { color: var(--accent-purple); text-decoration: underline; }
+.footer-separator { margin: 0 8px; color: var(--border-color); }
+
+/*
+   ==============================================
+   --- Responsive styles for mobile & tablet ---
+   ==============================================
+*/
+@media (max-width: 900px) {
+    body {
+        padding: 10px;
+    }
+
+    .App {
+        height: auto;
+        min-height: calc(100vh - 20px);
+    }
+
+    .App-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .App-header p {
+        font-size: 0.9rem;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+
+    .panel {
+        min-height: auto; /* Let panels size naturally */
+    }
+    
+    .right-panel-content {
+        min-height: 300px;
+    }
+}
+
