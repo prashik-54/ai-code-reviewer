@@ -1,27 +1,27 @@
 
-# 🤖 AI Code Reviewer
+# **🤖 AI Code Reviewer**
 
 A smart development partner that provides instant code reviews, fixes, complexity analysis, documentation, and language translation using the power of Google's Gemini AI.
 
 
-## ✨ Features
+## **✨ Features**
 
-- Comprehensive Code Review: Get a detailed analysis of your code, including potential bugs, performance bottlenecks, and adherence to best practices, complete with a quality score.
+- **Comprehensive Code Review:** Get a detailed analysis of your code, including potential bugs, performance bottlenecks, and adherence to best practices, complete with a quality score.
 
-- Automated Code Fixing: Automatically correct bugs and logical errors in your code with a single click.
+- **Automated Code Fixing:** Automatically correct bugs and logical errors in your code with a single click.
 
-- Complexity Analysis: Instantly determine the time and space complexity (Big O notation) of your algorithms.
+- **Complexity Analysis:** Instantly determine the time and space complexity (Big O notation) of your algorithms.
 
-- Documentation Generation: Create clean, professional-looking documentation for your code, outlining its purpose, parameters, and return values.
+- **Documentation Generation:** Create clean, professional-looking documentation for your code, outlining its purpose, parameters, and return values.
 
-- Multi-Language Code Conversion: Translate code snippets between popular programming languages like JavaScript, Python, Java, and more.
+- **Multi-Language Code Conversion:** Translate code snippets between popular programming languages like JavaScript, Python, Java, and more.
 
-- Sleek, Responsive UI: A modern and intuitive user interface that works beautifully on any device, from mobile phones to desktops.
+- **Sleek, Responsive UI:** A modern and intuitive user interface that works beautifully on any device, from mobile phones to desktops.
 
-- Dark & Light Themes: A comfortable viewing experience in any lighting condition, with your preference saved locally.
-## 🛠️ Tech Stack
+- **Dark & Light Themes:** A comfortable viewing experience in any lighting condition, with your preference saved locally.
+# **🛠️ Tech Stack**
 
-**Frontend :**
+## **Frontend :**
 
 **React:** A declarative library for building user interfaces.
 
@@ -33,7 +33,7 @@ A smart development partner that provides instant code reviews, fixes, complexit
 
 **@uiw/react-textarea-code-editor:** A professional code editor component with syntax highlighting.
 
-**Backend :**
+## **Backend :**
 
 **Node.js:** A JavaScript runtime for building the server.
 
@@ -46,7 +46,7 @@ A smart development partner that provides instant code reviews, fixes, complexit
 **cors:** To enable cross-origin requests from the frontend.
 
 
-## 🚀 Run Locally
+## **🚀 Run Locally**
 
 TO clone the project , follow this steps.
 
@@ -73,7 +73,7 @@ TO clone the project , follow this steps.
 ```bash
   npm install
 ```
-Create a ``` .env ``` file and add your credentials:
+- Create a ``` .env ``` file inside server and add your credentials:
 ```bash
   GEMINI_API_KEY="YOUR_API_KEY_HERE"
   PORT=5000
@@ -84,10 +84,9 @@ Create a ``` .env ``` file and add your credentials:
 ```
 **3.Configure the Frontend :**
 
-- Navigate to the client directory:
+- Open new terminal and Navigate to the client directory:
 ```bash
-  cd ..
-  cd client
+  cd ai-code-reviewer/client 
 ```
 - Install client dependencies:
 
@@ -103,11 +102,11 @@ The application will open automatically in your browser at http://localhost:3000
 
 
 
-## ✍️ Author
+## **✍️ Author**
 
 Prashik Wasnik
-- LinkedIn: [prashik-wasnik](https://www.linkedin.com/in/prashik-wasnik/)
-- GitHub: [prashik-54](https://github.com/prashik-54)
+- **LinkedIn:** [prashik-wasnik](https://www.linkedin.com/in/prashik-wasnik/)
+- **GitHub:** [prashik-54](https://github.com/prashik-54)
 
 
 
