@@ -34,7 +34,7 @@ app.post('/api/review', async (req, res) => {
         }
 
         // Choose a generative model instance.
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         // Detailed prompt instructing the model to return a markdown-formatted review.
         const prompt = `
@@ -92,7 +92,7 @@ app.post('/api/review', async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to get review from AI model.' });
+        res.status(500).json({ error: error.message || 'Failed to get review from AI model.' });
     }
 });
 
@@ -107,7 +107,7 @@ app.post('/api/fix', async (req, res) => {
             return res.status(400).json({ error: 'Code is required.' });
         }
 
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         // Prompt instructs model to reply with only the corrected code in a single code block.
         const prompt = `
@@ -133,7 +133,7 @@ app.post('/api/fix', async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to get fixed code from AI model.' });
+        res.status(500).json({ error: error.message || 'Failed to get fixed code from AI model.' });
     }
 });
 
@@ -148,7 +148,7 @@ app.post('/api/complexity', async (req, res) => {
             return res.status(400).json({ error: 'Code is required.' });
         }
 
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         const prompt = `
 🧠 Act as a computer science expert specializing in algorithm analysis.
@@ -185,7 +185,7 @@ Make the explanation concise, clear, and suitable for technical documentation or
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to get complexity analysis from AI model.' });
+        res.status(500).json({ error: error.message || 'Failed to get complexity analysis from AI model.' });
     }
 });
 
@@ -200,7 +200,7 @@ app.post('/api/document', async (req, res) => {
             return res.status(400).json({ error: 'Code is required.' });
         }
 
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         const prompt = `
 🧑‍💻 Act as a senior software engineer writing technical documentation.
@@ -229,7 +229,7 @@ Your response should include the following sections:
 
 ---
 
-❗ Do **NOT** include the original code in your response.  
+❗ Do **NOT** include the original code in your response.  
 ❗ Do **NOT** wrap your response in a markdown code block.
 
 ---
@@ -250,7 +250,7 @@ Make the explanation concise, clear, and suitable for technical documentation or
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to generate documentation from AI model.' });
+        res.status(500).json({ error: error.message || 'Failed to generate documentation from AI model.' });
     }
 });
 
@@ -268,7 +268,7 @@ app.post('/api/convert', async (req, res) => {
             return res.status(400).json({ error: 'Source and target languages are required.' });
         }
 
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         // Prompt asks for a precise translation and requests only a single markdown code block.
         const prompt = `
@@ -291,7 +291,7 @@ ${code}
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'Failed to convert code.' });
+        res.status(500).json({ error: error.message || 'Failed to convert code.' });
     }
 });
 
@@ -299,3 +299,4 @@ ${code}
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
+
